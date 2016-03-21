@@ -2,8 +2,36 @@ import {it} from 'angular2/testing';
 
 import {Parser} from './parser';
 import {Token} from './token/token';
+import {Operation} from './operation/operation';
 
-describe('Syntax', () => {
+describe('Parser', () => {
+
+    it('should inputString with "(666)"', () => {
+        const STR = `(666)`;
+        const TOKENS = [
+            new Token('('),
+            new Token('666'),
+            new Token(')')
+        ];
+        let parser = new Parser(STR);
+        expect(parser.inputString).toEqual(STR);
+        expect(parser.tokens).toEqual(TOKENS);
+        // todo
+        // expect(parser.tree).toEqual(new Operation(TOKENS));
+    });
+
+    it('should inputString with "(+ 1 2)"', () => {
+        const STR = `(+ 1 2)`;
+        let parser = new Parser(STR);
+        expect(parser.inputString).toEqual(STR);
+        expect(parser.tokens).toEqual([
+            new Token('('),
+            new Token('+'),
+            new Token('1'),
+            new Token('2'),
+            new Token(')')
+        ]);
+    });
 
     it('should inputString with "(+ 33 (* 4 5))"', () => {
         const STR = ` ( + 33    (* 
@@ -237,4 +265,3 @@ describe('Syntax', () => {
     // }));
 
 });
-

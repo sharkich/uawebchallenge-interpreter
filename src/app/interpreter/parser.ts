@@ -2,11 +2,13 @@ import {Token} from './token/token';
 
 export class Parser {
     inputString: string = '';
-    tokens: Object[] = [];
+    tokens: Token[] = [];
+    tree: Token[] = [];// todo
     
     constructor(inputString:string) {
         this.inputString = inputString;
-        this.parseTokens();
+        this._createTokens();
+        this._createTree(0);
     }
 
     static isDeliver(str: string) {
@@ -17,7 +19,7 @@ export class Parser {
         return ['(', ')'].indexOf(str) !== -1;
     }
 
-    parseTokens() {
+    private _createTokens() {
         const length = this.inputString.length;
         let tokenStr: string = '';
         for(let i = 0; i<length; i++) {
@@ -34,4 +36,18 @@ export class Parser {
             }
         }
     }
-} 
+    
+    private _createTree(index) {
+        // todo
+        this.tokens.forEach((token: Token) => {
+            if (token.isOperation) {
+                
+            }
+        });
+    }
+
+    get result() {
+        // todo
+        return 0;
+    }
+}

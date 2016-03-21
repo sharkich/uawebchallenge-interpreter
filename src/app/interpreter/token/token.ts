@@ -10,7 +10,7 @@ const OPERATIONS: string[] = [
 ];
 
 export class Token {
-    private tokenString: string;
+    tokenString: string;
     
     constructor(tokenString: string) {
         this.tokenString = tokenString;
