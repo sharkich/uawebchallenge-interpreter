@@ -56,6 +56,7 @@ describe('Token', () => {
         expect(token.isNumber).toBeTruthy();
         expect(token.isOperation).toBeFalsy();
         expect(token.kind).toEqual('data');
+        expect(token.value).toEqual(123.12);
     });
     it('should NOT isNumber with "123a"', () => {
         let token = new Token('123a');

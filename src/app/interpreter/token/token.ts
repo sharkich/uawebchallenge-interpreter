@@ -39,4 +39,11 @@ export class Token {
     get kind() {
         return this.isOperation ? 'operation' : !this.isBrace ? 'data' : null;
     }
+    
+    get value() {
+        if (this.isNumber) {
+            return +this.tokenString;
+        }
+        throw new Error(`O_o: '${this.tokenString}' is not a Data`);
+    }
 }

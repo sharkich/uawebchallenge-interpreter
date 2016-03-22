@@ -51,4 +51,28 @@ export class Operation {
             throw new Error('O_o Parse error');
         }
     }
+
+    private _doOperator(privResult:number, value:number) {
+        switch (this.kind) {
+            case 'equal': return value;
+            case 'plus': return privResult + value;
+            case 'minus': return privResult - value;
+            case 'multi': return privResult * value;
+            case 'div': return privResult / value;
+            default:
+                throw new Error(`O_o: Undefined switching Operator: '${this.kind}'`);
+        }
+    }
+    
+    get result() {
+        let _result;
+        this.operators.forEach((operator) => {
+            if (_result === undefined) {
+                _result = operator.value; // default equals operator
+            } else {
+                _result = this._doOperator(_result, operator.value);
+            }
+        });
+        return _result;
+    }
 }
